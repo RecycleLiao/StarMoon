@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News;
+use App\Models\Carousel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
-class NewsController extends Controller
+class CarouselController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::get();
-        return view('admin.news.index',compact('news'));
+        $carousels= Carousel::orderBy('created_at','desc')->get();        
+        return view('admin.carousel.index',compact('carousels'));
     }
 
     /**
@@ -25,8 +26,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $news = News::get();
-        return view('admin.news.create',compact('news'));
+        return view('admin.carousel.create');
     }
 
     /**
@@ -37,8 +37,15 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        News::create($request->all());
-        return redirect()->route('news.index');
+        if($request->hasFile('image_url')){
+            $path = Storage::put('/carousel',$request->image_url);
+        }
+        $carousel = Carousel::create([            
+            'slogan' => $request->slogan,
+            'image_url' => $path,
+        ]);
+        
+        return redirect()->route('carousels.index');
     }
 
     /**
@@ -60,8 +67,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $news =News::find($id);
-        return view('admin.news.edit',compact('news'));
+        $carousel =Carousel::find($id);
+        return view('admin.carousel.edit',compact('carousel'));
     }
 
     /**
@@ -73,8 +80,18 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        News::find($id)->update($request->all());
-        return redirect()->route('news.index');
+        $carousel = Carousel::find($id);
+        if($request->hasFile('image_url')){
+            Storage::delete($carousel->image_url);
+            $path=Storage::put('/carousel',$request->image_url);            
+        }else{
+            $path =$carousel->image_url;
+        }
+        $carousel->update([
+            'slogan' => $request->slogan,
+            'image_url' => $path,
+    ]);
+        return redirect()->route('carousels.index');
     }
 
     /**
@@ -85,7 +102,9 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        News::find($id)->delete();
-        return redirect()->route('news.index');
+        $feature =Carousel::find($id);
+        Storage::delete($feature->image_url);        
+        $feature->delete();
+        return redirect()->route('features.index');
     }
 }

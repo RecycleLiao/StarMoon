@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\News;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class FeedbackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::get();
-        return view('admin.news.index',compact('news'));
+        $feedbacks = Feedback::get();
+        return view('admin.feedback.index',compact('feedbacks'));
     }
 
     /**
@@ -24,9 +24,8 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        $news = News::get();
-        return view('admin.news.create',compact('news'));
+    {        
+        return view('admin.feedback.create');
     }
 
     /**
@@ -37,8 +36,8 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        News::create($request->all());
-        return redirect()->route('news.index');
+        Feedback::create($request->all());
+        return redirect()->route('feedbacks.index');
     }
 
     /**
@@ -60,8 +59,9 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $news =News::find($id);
-        return view('admin.news.edit',compact('news'));
+        $feedback = Feedback::find($id);
+        return view('admin.feedback.edit',compact('feedback'));
+
     }
 
     /**
@@ -73,8 +73,8 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        News::find($id)->update($request->all());
-        return redirect()->route('news.index');
+        Feedback::find($id)->update($request->all());
+        return redirect()->route('feedbacks.index');
     }
 
     /**
@@ -85,7 +85,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        News::find($id)->delete();
-        return redirect()->route('news.index');
+        Feedback::find($id)->delete();
+        return redirect()->route('feedbacks.index');
     }
 }
