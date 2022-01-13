@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Carousel;
+use App\Mail\ContactNotify;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class CarouselController extends Controller
@@ -105,6 +108,27 @@ class CarouselController extends Controller
         $feature =Carousel::find($id);
         Storage::delete($feature->image_url);        
         $feature->delete();
-        return redirect()->route('features.index');
+        return redirect()->route('carousels.index');
+    }
+
+    public function contact(Request $request)
+    {
+        $validated =$request->validate([
+            'email'=>'email',
+            'phone'=>'required|min:9|max:10',
+            'name'=>'required|max:50',
+            'content'=>'required|max:500',
+            'g-recaptcha-response' => 'recaptcha',
+            recaptchaFieldName() => recaptchaRuleName()
+        ]);
+        $contact=Contact::create([
+            'name'=>$request->name,
+            'phone'=>$request->phone,
+            'email'=>$request->email,
+            'content'=>$request->content,
+        ]);
+        Mail::to('demostarmoon@gmail.com')->send(new ContactNotify($contact));
+        return redirect()->route('carousels.index');
+
     }
 }

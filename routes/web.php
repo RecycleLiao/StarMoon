@@ -42,6 +42,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function (){
     Route::resource('/feedbacks', FeedbackController::class);
     // 輪播圖片和slogan管理
     Route::resource('/carousels', CarouselController::class);
+    Route::post('/contact', [CarouselController::class, 'contact'])->name('carousels.contact');
+
     // 園區特色管理
     Route::resource('/features', FeatureController::class);
     Route::delete('/feature-image',[FeatureController::class,'imageDelete'])->name('feature.image-delete');

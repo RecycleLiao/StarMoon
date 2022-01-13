@@ -9,6 +9,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    {!! htmlScriptTagJsApi() !!}
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -54,6 +56,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('features.index')}}">園區特色管理</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">聯絡我們</a>
                         </li>
                         @endguest
                     </ul>
