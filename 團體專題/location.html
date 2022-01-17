@@ -1,0 +1,136 @@
+<!-- 
+1.background-image / opacity
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap 5 Css Core -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <!-- CSS -->
+  <link rel="stylesheet" href="./css/location.css">
+  <!-- http://www.bmmotel.com/location.aspx -->
+  <title>星月文旅-交通指南</title>
+
+</head>
+
+<body>
+  <ul class="nav flex-column">
+    <img src="./img/logo.jpg" class="card-img-top" alt="">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="#introduce">頁首</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#idea">經營理念</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#room-type">房型介紹</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#feature">園區特色</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#news">最新消息</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#evaluation"> 評價回饋</a>
+    </li>
+    <li class="nav-item map">
+      <a class="nav-link" href="#contact">交通資訊</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link"
+        href="https://booking.owlting.com/smbnb?lang=zh_TW&start=2022-01-09&end=2022-01-10&adult=1&child=0&infant=0"
+        target="_blank">線上訂房</a>
+    </li>
+  </ul>
+
+  <div class="page-wrapper">
+    <div class="main">
+      <!-- 滿版照片 -->
+      <div class="head"></div>
+
+      <section class="content">
+        <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3635.3973715138773!2d120.69972994930951!3d24.332646872126368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34690ffcd9a0b4b5%3A0x447fadfcfa6b8033!2z5pif5pyI5paH5peFIHwg5rqr5rOJIHwg5aW95a6i5rCR5a6_!5e0!3m2!1szh-TW!2stw!4v1641477430635!5m2!1szh-TW!2stw"
+        width=100% height=100% style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <!-- <div class="titleArea"><a href="#">交通指南</a></div> -->
+        <a href="#"><div id="triangle" class="triangle-right"></div></a>
+        <div class="loaction">
+          <div class="contentBox cubeinfo01" href="javascript: void(0);">
+            <a class="close1" href="javascript: void(0);"></a>
+            
+            <div class="articleBox">
+              <div class="articleArea">
+                <h3 class="car">開車</h3>
+                <div>
+                  (一)走國道1號：</div>
+                <div>
+                  國1下→往外埔（大摩天輪）方向→約3分鐘車程即可抵達。</div>
+                <div>
+                  (二)走國道3號：</div>
+                <div>
+                  國3下→往后里（大摩天輪）方向→約5至10分鐘車程可抵達。</div>
+
+                <h3 class="bus">公車</h3>
+                <p>
+                  豐原客運214號：
+                  后里馬場或大甲火車站發車→六分月眉北路口站牌下車 →步行約5分鐘抵達。</p>
+                <p>豐原客運215號：
+                  豐原或大甲體育場發車→麗寶樂園站下車→步行約20分鐘抵達</p>
+                <p>統聯客運155號：
+                  高鐵台中站或麗寶樂園發車→麗寶樂園站下車→步行約20分鐘抵達</p>
+                <p>統聯客運155副線：
+                  高鐵台中站或麗寶樂園發車→月眉北路口站牌下車→步行約15分鐘抵達</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <footer class="footer">
+        <div class="align">
+          <span class="addr">台中市后里區月眉北路486號(大摩天輪正後方)</span>
+          <span class="tel">電話：04-26831671 / 傳真：04-26834003</span>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 Js Core -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+  <script>
+    var isShow = false;
+    $("#triangle").click(function () {
+      if (isShow == true) {
+        $(".loaction").animate({ 'left': '-1000px' }, 1000, function () {
+          $('#triangle').removeClass('triangle-left');
+          $('#triangle').addClass('triangle-right');
+          isShow = false;
+        });
+      } else {
+        $(".loaction").animate({ 'left': '290px' }, 1000, function () {
+          $('#triangle').removeClass('triangle-right');
+          $('#triangle').addClass('triangle-left');
+          isShow = true;
+        });
+      }      
+    });
+  </script>
+</body>
+
+</html>
