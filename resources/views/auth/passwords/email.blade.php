@@ -9,11 +9,12 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                    {{-- <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> --}}
+                    <img class="col-lg-6 d-none d-lg-block" src="{{ asset('/img/white.jpg') }}" alt="">
                     <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Forgot Password!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">忘記密碼!</h1>
                             </div>
                             <form method="POST" action="{{ route('password.email') }}">
                                 @csrf
@@ -27,12 +28,12 @@
                                 @enderror
                                 </div>                                
                                 <button class="btn btn-primary btn-user btn-block">
-                                    Send Password Reset Link
+                                    請輸入註冊的Email
                                 </button>                                
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="{{route('login')}}">Login</a>
+                                <a class="small" href="{{route('login')}}">登入</a>
                             </div>                            
                         </div>
                     </div>

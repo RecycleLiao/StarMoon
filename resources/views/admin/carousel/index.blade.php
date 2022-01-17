@@ -1,21 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('title','輪播圖片和Solgan管理')
 
 @section('css')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 <style>
-    .modal-header h3 {
-        font-size: 30px;
-        position: absolute;
-        top: 25px;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    .modal-content {
-        background-color: burlywood;
-    }
-
     .form-control {
         margin: 20px;
         width: 90%;
@@ -26,6 +14,73 @@
         width: 100%;
         font-size: 25px;
         color: white;
+    }
+
+    .popup-wrap {
+        width: 100%;
+        height: 100%;
+        display: none;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        content: '';
+        background: rgba(0, 0, 0, 0.85);
+    }
+
+    .popup-box {
+        width: 50%;
+        padding: 50px 75px;
+        transform: translate(-50%, -50%) scale(0.5);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.5);
+        border-radius: 3px;
+        background: #fff;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 32px;
+        color: #1a1a1a;
+    }
+
+    h3 {
+        font-size: 24px;
+        color: #888;
+    }
+
+    .close-btn {
+        width: 50px;
+        height: 50px;
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        border-radius: 100%;
+        background: #d75f70;
+        font-weight: bold;
+        text-decoration: none;
+        color: #fff;
+        line-height: 40px;
+        font-size: 32px;
+    }
+
+    .transform-in,
+    .transform-out {
+        display: block;
+        -webkit-transition: all ease 0.5s;
+        transition: all ease 0.5s;
+    }
+
+    .transform-in {
+        -webkit-transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .transform-out {
+        -webkit-transform: translate(-50%, -50%) scale(0.5);
+        transform: translate(-50%, -50%) scale(0.5);
     }
 
     /* 我是分隔線 */
@@ -81,60 +136,61 @@
         </div>
     </div>
     <!-- 跳出視窗內容 -->
-    <div class="modal fade" id="loginModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- Header -->
-                <div class="modal-header">
-                    <h3>聯絡我們</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <!-- Body -->
-                <div class="modal-body">
-                    <!-- 表單內容 -->
-                    <form action="{{asset('/admin/contact')}}" method="POST">
-                        @csrf                            
-                            <input type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" value="{{old('name')}}" placeholder="請填寫您的姓名">
-                            @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror                            
-                            <input type="text" class="form-control  @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{old('phone')}}" placeholder="請填寫您的電話">
-                            @error('phone')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror                            
-                            <input type="text" class="form-control  @error('email') is-invalid @enderror" id="email" name="email" value="{{old('email')}}" placeholder="請填寫您的Email">
-                            @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror                            
-                            <textarea type="text" rows="3" class="form-control message_textarea @error('email') is-invalid @enderror" id="content"
-                            name="content" placeholder="您想留言的訊息">{{old('content')}}</textarea>
-                            @error('content')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
-                            @error('g-recaptcha-response')                            
-                                <strong class="text-danger">{{ $message }}</strong>                            
-                            @enderror
-                            {!! htmlFormSnippet() !!}
-                        </div>
-                        <button type="submit" class="btn btn-info feedback_btn">送出訊息</button>
-                    </form>
-                </div>
-            </div>
+    <a class="btn popup-btn" href="#letmeopen">聯絡我們</a>
+
+    <div class="popup-wrap" id="letmeopen">
+        <div class="popup-box transform-out">
+            <div class="img"></div>
+            <form action="{{asset('/admin/contact')}}" method="POST">
+                @csrf
+                <input type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name"
+                    value="{{old('name')}}" placeholder="請填寫您的姓名">
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+                <input type="text" class="form-control  @error('phone') is-invalid @enderror" id="phone" name="phone"
+                    value="{{old('phone')}}" placeholder="請填寫您的電話">
+                @error('phone')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+                <input type="text" class="form-control  @error('email') is-invalid @enderror" id="email" name="email"
+                    value="{{old('email')}}" placeholder="請填寫您的Email">
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+                <textarea type="text" rows="3"
+                    class="form-control message_textarea @error('email') is-invalid @enderror" id="content"
+                    name="content" placeholder="您想留言的訊息">{{old('content')}}</textarea>
+                @error('content')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+                @error('g-recaptcha-response')
+                <strong class="text-danger">{{ $message }}</strong>
+                @enderror
+                {!! htmlFormSnippet() !!}
+                <button type="submit" class="btn btn-info feedback_btn">送出訊息</button>
+            </form>
+            <a class="close-btn popup-close" href="#">x</a>
         </div>
     </div>
+</div>
+</div>
+</div>
 </div>
 @endsection
 
 @section('js')
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    
+
 <script>
     $(document).ready( function () {
         $('#my-table').DataTable({
@@ -153,5 +209,24 @@
             }
         })
     })
+
+    $(".popup-btn").click(function() {
+        var href = $(this).attr("href")
+        $(href).fadeIn(250);
+        $(href).children$("popup-box").removeClass("transform-out").addClass("transform-in");
+        e.preventDefault();
+        });
+
+        $(".popup-close").click(function() {
+        closeWindow();
+        });
+        // $(".popup-wrap").click(function(){
+        //   closeWindow();
+        // })
+        function closeWindow(){
+        $(".popup-wrap").fadeOut(200);
+        $(".popup-box").removeClass("transform-in").addClass("transform-out");
+        event.preventDefault();
+        }
 </script>
 @endsection

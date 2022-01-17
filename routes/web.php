@@ -25,6 +25,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// 前台
+// Route::get('/', [FrontController::class, 'index'])->name('index');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

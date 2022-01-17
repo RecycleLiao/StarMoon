@@ -9,17 +9,18 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                    {{-- <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> --}}
+                    <img class="col-lg-6 d-none d-lg-block" src="{{ asset('/img/white.jpg') }}" alt="">
                     <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Register Your Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">帳號註冊!</h1>
                             </div>
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
 
                                 <div class="mb-3">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Name" autofocus>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="請輪入帳號" autofocus>
     
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -29,7 +30,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter Email Address." autofocus>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="請輸入Email." autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -38,7 +39,7 @@
                                 @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="請輸入密碼">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -47,10 +48,10 @@
                                 @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <input id="password-confirm" type="password" class="form-control form-control-user" name="password_confirmation" required autocomplete="new-password" placeholder="confirm password">                                    
+                                    <input id="password-confirm" type="password" class="form-control form-control-user" name="password_confirmation" required autocomplete="new-password" placeholder="請重覆再輸入密碼">                                    
                                 </div>
                                 <button class="btn btn-primary btn-user btn-block">
-                                    Register
+                                    註冊
                                 </button>
                                 {{-- <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
@@ -62,7 +63,7 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="{{route('login')}}">Login Here</a>
+                                <a class="small" href="{{route('login')}}">登入</a>
                             </div>
                         </div>
                     </div>

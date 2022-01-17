@@ -9,11 +9,13 @@
             <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
-                    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                    {{-- <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> --}}
+                    {{-- <img class="col-lg-6 d-none d-lg-block" src="{{ asset('/img/tiger.png') }}" alt=""> --}}
+                    <img class="col-lg-6 d-none d-lg-block" src="{{ asset('/img/white.jpg') }}" alt="">
                     <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">歡迎回來!</h1>
                             </div>
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
@@ -40,12 +42,12 @@
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('記住帳號') }}
                                     </label>
                                     </div>
                                 </div>
                                 <button class="btn btn-primary btn-user btn-block">
-                                    Login
+                                    登入
                                 </button>
                                 {{-- <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
@@ -57,10 +59,10 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="{{route('password.request')}}">Forgot Password?</a>
+                                <a class="small" href="{{route('password.request')}}">忘記密碼?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="{{('register')}}">Create an Account!</a>
+                                <a class="small" href="{{('register')}}">註冊帳號!</a>
                             </div>
                         </div>
                     </div>

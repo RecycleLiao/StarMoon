@@ -32,7 +32,7 @@
         </tr>
         <tr>
             <td>信箱</td>
-            <td>{{$contact->address}}</td>
+            <td>{{$contact->email}}</td>
         </tr>
         <tr>
             <td>內容</td>

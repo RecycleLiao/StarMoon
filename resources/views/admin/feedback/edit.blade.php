@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('css')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
 <style>
@@ -39,9 +39,9 @@
                             </div>
                         </div>                        
                         <div class="form-group row py-2">
-                            <label for="content" class="col-sm-2 col-form-label">內容</label>
+                            <label for="detail" class="col-sm-2 col-form-label">內容</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="content" id="content" rows="5" required>{{$feedback->content}}</textarea>
+                                <textarea class="form-control" name="content" id="detail" rows="5" required>{{$feedback->content}}</textarea>
                             </div>
                         </div>
                         {{-- <div class="form-group row py-2">
@@ -67,7 +67,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#content').summernote();
+        $('#detail').summernote();
     });
 </script>
 @endsection

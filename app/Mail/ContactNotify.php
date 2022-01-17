@@ -16,9 +16,9 @@ class ContactNotify extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($contact)
     {
-        //
+        $this->contact = $contact;
     }
 
     /**
@@ -28,6 +28,7 @@ class ContactNotify extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.contact');
+        $contact =$this->contact;
+        return $this->view('emails.contact',compact('contact'));
     }
 }

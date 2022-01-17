@@ -14,6 +14,9 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    {!! htmlScriptTagJsApi() !!}
+
+
     <!-- Custom fonts for this template-->
     <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
@@ -23,6 +26,8 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @yield('css')
 
 </head>
 
